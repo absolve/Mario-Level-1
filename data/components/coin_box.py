@@ -24,7 +24,7 @@ class Coin_box(pg.sprite.Sprite):
         self.animation_timer = 0
         self.first_half = True  # First half of animation cycle
         self.state = c.RESTING
-        self.rest_height = y
+        self.rest_height = y   #原来位置
         self.gravity = 1.2
         self.y_vel = 0
         self.contents = contents
@@ -99,7 +99,7 @@ class Coin_box(pg.sprite.Sprite):
         self.rect.y += self.y_vel
         self.y_vel += self.gravity
 
-        if self.rect.y > self.rest_height + 5:
+        if self.rect.y > self.rest_height + 5:  #大于这个位置就设置回原来位置
             self.rect.y = self.rest_height
             self.state = c.OPENED
             if self.contents == 'mushroom':

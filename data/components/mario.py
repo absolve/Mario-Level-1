@@ -533,7 +533,7 @@ class Mario(pg.sprite.Sprite):
                 self.shoot_fireball(fire_group)
         else:
             self.max_x_vel = c.MAX_WALK_SPEED
-            self.x_accel = c.WALK_ACCEL
+            self.x_accel = c.WALK_ACCEL     #设置速度
 
         if keys[tools.keybinding['jump']]:
             if self.allow_jump:
@@ -612,7 +612,7 @@ class Mario(pg.sprite.Sprite):
         self.gravity = c.JUMP_GRAVITY
         self.y_vel += self.gravity
         self.check_to_allow_fireball(keys)
-
+        #重力修改回去 往下掉的时候
         if self.y_vel >= 0 and self.y_vel < self.max_y_vel:
             self.gravity = c.GRAVITY
             self.state = c.FALL
@@ -624,7 +624,7 @@ class Mario(pg.sprite.Sprite):
         elif keys[tools.keybinding['right']]:
             if self.x_vel < self.max_x_vel:
                 self.x_vel += self.x_accel
-
+        # 如果这个按键释放重力修改回去   自动下落
         if not keys[tools.keybinding['jump']]:
             self.gravity = c.GRAVITY
             self.state = c.FALL
@@ -636,7 +636,7 @@ class Mario(pg.sprite.Sprite):
     def falling(self, keys, fire_group):
         """Called when Mario is in a FALL state"""
         self.check_to_allow_fireball(keys)
-        if self.y_vel < c.MAX_Y_VEL:
+        if self.y_vel < c.MAX_Y_VEL:    
             self.y_vel += self.gravity
 
         if keys[tools.keybinding['left']]:
